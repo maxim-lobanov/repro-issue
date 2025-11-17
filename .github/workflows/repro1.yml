@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:24.04
-      options: --user=ubuntu
+      options: --user=root
     steps:
       - name: Run a one-line script
         run: |
