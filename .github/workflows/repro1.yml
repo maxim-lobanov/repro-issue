@@ -1,0 +1,19 @@
+name: Repro 1
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:24.04
+      options: --user=ubuntu
+    steps:
+      - name: Run a one-line script
+        run: echo $GITHUB_ENV
+
+      - name: Run a multi-line script
+        run: |
+          echo "Test" > $GITHUB_ENV
