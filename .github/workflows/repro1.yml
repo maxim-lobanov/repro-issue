@@ -17,6 +17,8 @@ jobs:
           ls -la $GITHUB_ENV
       - run: |
           cat /etc/passwd
+      - run: |
+          whoami
 
       - name: Run a multi-line script
         run: |
