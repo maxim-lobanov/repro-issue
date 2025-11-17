@@ -12,7 +12,9 @@ jobs:
       options: --user=ubuntu
     steps:
       - name: Run a one-line script
-        run: echo $GITHUB_ENV
+        run: |
+          echo $GITHUB_ENV
+          ls -la $GITHUB_ENV
 
       - name: Run a multi-line script
         run: |
