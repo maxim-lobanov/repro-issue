@@ -7,19 +7,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:24.04
-      options: --user=root
     steps:
-      - name: Run a one-line script
-        run: |
-          echo $GITHUB_ENV
-          ls -la $GITHUB_ENV
       - run: |
-          cat /etc/passwd
+            cat /etc/waagent.conf
       - run: |
-          whoami
-
-      - name: Run a multi-line script
-        run: |
-          echo "Test" > $GITHUB_ENV
+            set +e
+            if grep -q '^AutoUpdate.UpdateToLatestVersion=' /etc/waagent.conf; then
+              sudo sed -i 's/^AutoUpdate.UpdateToLatestVersion=.*/AutoUpdate.UpdateToLatestVersion=n/' /etc/waagent.conf
+            else
+              echo 'AutoUpdate.UpdateToLatestVersion=n' | sudo tee -a /etc/waagent.conf
+            fi
+      - run: |
+            cat /etc/waagent.conf
