@@ -13,4 +13,4 @@ jobs:
       - run: |
           printenv | sort
       - run: |
-            ls -la $HOME/actions-runner
+            ls -la $HOME/actions-runner/cached
