@@ -6,16 +6,11 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04-arm
     steps:
       - run: |
-            cat /etc/waagent.conf
+          pwd
       - run: |
-            set +e
-            if grep -q '^AutoUpdate.UpdateToLatestVersion=' /etc/waagent.conf; then
-              sudo sed -i 's/^AutoUpdate.UpdateToLatestVersion=.*/AutoUpdate.UpdateToLatestVersion=n/' /etc/waagent.conf
-            else
-              echo 'AutoUpdate.UpdateToLatestVersion=n' | sudo tee -a /etc/waagent.conf
-            fi
+          printenv | sort
       - run: |
-            cat /etc/waagent.conf
+            ls -la
